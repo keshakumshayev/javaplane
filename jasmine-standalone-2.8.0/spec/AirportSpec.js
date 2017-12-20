@@ -15,12 +15,12 @@ describe('Airport', function() {
     it('prevents takeoff during storm', function() {
       airport.land(plane)
       airport.weather = 'stormy'
-      console.log(airport);
+      // console.log(airport);
       expect(function() {airport.takeoff(plane)} ).toThrow(new Error("PLANES CANNOT TAKE OFF DURING A STORM"));
     });
     it('prevents landing during storm', function() {
       airport.weather = 'stormy'
-      airport.land(plane)
+      // console.log(airport);
       expect(function() {airport.land(plane)} ).toThrow(new Error("PLANES CANNOT LAND DURING A STORM"));
     });
   });

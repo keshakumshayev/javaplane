@@ -4,11 +4,19 @@ describe('Airport', function() {
 
   it('lands planes', function() {
     airport.land(plane)
-    expect(airport.planes).toContain(jasmine.objectContaining(plane))
+    expect(airport.dockedPlanes).toContain(jasmine.objectContaining(plane))
   });
 
   it('takes off planes', function() {
     airport.takeoff(plane)
-    expect(airport.planes).not.toContain(jasmine.objectContaining(plane))
+    expect(airport.dockedPlanes).not.toContain(jasmine.objectContaining(plane))
+  });
+  describe('safety', function() {
+    it('prevents takeoff during storm', function() {
+      airport.land(plane)
+      airport.weather = 'stormy'
+      console.log(airport);
+      expect(function() {airport.takeoff(plane)} ).toThrow(new Error("PLANES CANNOT TAKE OFF DURING A STORM"));
+    });
   });
 });

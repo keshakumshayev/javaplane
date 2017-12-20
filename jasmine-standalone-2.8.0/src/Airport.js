@@ -1,12 +1,14 @@
 function Airport() {
-  this.planes = [];
+  this.dockedPlanes = [];
+  this.weather = ""
 };
 
 Airport.prototype.land = function(plane) {
-  return this.planes.push(plane);
+  return this.dockedPlanes.push(plane);
 };
 
 Airport.prototype.takeoff = function(plane) {
-  this.planes.pop();
-  return this.planes;
+  if(this.weather === "stormy") throw(new Error("PLANES CANNOT TAKE OFF DURING A STORM"));
+  this.dockedPlanes.pop();
+  return this.dockedPlanes;
 };
